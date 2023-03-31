@@ -6,7 +6,6 @@ function handleAccordion() {
   for (let accordionItemHeader of accordionItemHeaders) {
     accordionItemHeader.addEventListener("click", function (e) {
       accordionItemHeader.classList.toggle("active");
-
       let accordionItemBody = accordionItemHeader.nextElementSibling;
       console.log(accordionItemBody);
       if (accordionItemHeader.classList.contains("active")) {
@@ -14,6 +13,17 @@ function handleAccordion() {
           accordionItemBody.scrollHeight + "px";
       } else {
         accordionItemBody.style.maxHeight = 0;
+      }
+
+      let accordionItemHeaderActive = document.querySelector(
+        ".accordion-item-header.active"
+      );
+      if (
+        accordionItemHeaderActive &&
+        accordionItemHeaderActive !== accordionItemHeader
+      ) {
+        accordionItemHeaderActive.classList.toggle("active");
+        accordionItemHeaderActive.nextElementSibling.style.maxHeight = 0;
       }
     });
   }
